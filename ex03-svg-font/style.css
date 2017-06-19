@@ -1,0 +1,59 @@
+@font-face {
+  font-family: 'icomoon';
+  src:  url('fonts/icomoon.eot?crjs2a');
+  src:  url('fonts/icomoon.eot?crjs2a#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.ttf?crjs2a') format('truetype'),
+    url('fonts/icomoon.woff?crjs2a') format('woff'),
+    url('fonts/icomoon.svg?crjs2a#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-usa-flag:before {
+  content: "\e900";
+}
+.icon-dashboard:before {
+  content: "\e901";
+}
+.icon-dongnao:before {
+  content: "\e902";
+}
+.icon-herowalking:before {
+  content: "\e903";
+}
+.icon-order:before {
+  content: "\e904";
+}
+
+.svgFont-01 {
+  width: 800px;
+  height: 200px;
+  border: 1px dashed gray;
+  font-size: 100px; 
+  color: blue; 
+  text-shadow: 0 0 20px green
+}
+
+.svgFont-02 {
+  width: 800px;
+  height: 200px;
+  border: 1px dashed blue;
+  margin-top: 20px;
+  font-size: 80px; 
+  color: red; 
+}

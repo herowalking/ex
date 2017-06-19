@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+	<style>
+		.silder_box {
+			width: 1190px;
+			height: 410px;
+			margin: 100px auto;
+			overflow: hidden;
+		}
+		.silder img{
+			display: block;
+		}
+		.silder{
+			margin: 0;
+			padding: 0;
+			position: relative;
+			perspective:600;
+			-webkit-perspective: 600;
+		}
+		.silder li{
+			margin: 0;
+			padding: 0;
+			list-style: none;
+			top: -410px;
+			position: absolute;
+			animation: run 16s infinite;
+		}
+		.silder li:nth-child(1){
+			animation-delay: 4s;
+		}
+		.silder li:nth-child(2){
+			animation-delay: 8s;
+		}
+		.silder li:nth-child(3){
+			animation-delay: 12s;
+		}
+		.silder li:nth-child(4){
+			animation-delay: 16s;
+		}
+		.silder .num1{
+			animation: runNum1 16s ;
+		}
+		@keyframes run{
+			0% {
+				top:-410px;
+				transform: rotateX(0);
+				z-index: 1;
+			}
+			4% {
+				transform: rotateX(45deg);
+			}
+			8.3333333% {
+				top: 0px;
+				transform: rotateX(0) ;
+			}
+			25% {
+				top: 0px;
+				transform: rotateX(0);
+				z-index: 0;
+			}
+			29% {
+				top: 205px;
+				transform: rotateX(45deg);
+			}
+			33.3333% {
+				top:  410px;
+				transform: rotateX(0);
+			}
+			100% {
+				top: 410px;
+			}
+		}
+		@keyframes runNum1{
+			0% {
+				top:0;
+			}
+			8.3333333% {
+				top: 0px;
+			}
+			25% {
+				top: 0px;
+				transform: rotateX(0);
+				z-index: 0;
+			}
+			29% {
+				top: 205px;
+				transform: rotateX(45deg);
+			}
+			33.3333% {
+				top:  410px;
+				transform: rotateX(0);
+			}
+			100% {
+				top: 410px;
+			}
+		}
+	</style>
+</head>
+<body>
+	<div class="silder_box">
+		<ul class="silder">
+			<li><img src="http://r1.ykimg.com/051000005931259DADC0B006D907D801"></li>
+			<li><img src="http://r1.ykimg.com/0510000059293681ADC0B006C509E802"></li>
+			<li><img src="http://r1.ykimg.com/05100000592EABEE8B3D0604EE097D80"></li>
+			<li><img src="http://r1.ykimg.com/05100000593125CBAD9E0707B7092973"></li>
+			<li class="num1"><img src="http://r1.ykimg.com/05100000593125CBAD9E0707B7092973"></li>
+		</ul>			
+	</div>
+</body>
+</html>

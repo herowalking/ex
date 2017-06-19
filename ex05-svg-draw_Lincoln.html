@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>SVG Draw</title>
+    <style>
+        html,body{
+            margin: 0;
+            padding: 0;
+        }
+        .out {
+            width: 230px;
+            height: 230px;
+            background-color: rgba(0,0,0,.9);
+        }
+    </style>
+</head>
+<body>
+    <svg class="out">
+        <ellipse rx="87" ry="77" cx="115" cy="105" fill="#fff"></ellipse>
+        <ellipse rx="38" ry="25" cx="85" cy="70" fill="#000" transform="translate(-10, 45) rotate(-30 45 45)"></ellipse>
+        <ellipse rx="38" ry="25" cx="115" cy="70" fill="#000" transform="translate(58, -10) rotate(30 45 45)"></ellipse>
+        <circle r="21" cx="88" cy="88" fill="#fff"></circle>
+        <circle r="21" cx="145" cy="88" fill="#fff"></circle>
+        <ellipse rx="14" ry="17" cx="88" cy="88" fill="#000"></ellipse>
+        <ellipse rx="14" ry="17" cx="145" cy="88" fill="#000"></ellipse>
+        <circle r="5.5" cx="89" cy="79" fill="#fff"></circle>
+        <circle r="5.5" cx="146" cy="79" fill="#fff"></circle>
+        <path d="M 115 145 q -20 40 -40 0" stroke="#000" stroke-width="5" fill="none"></path>
+        <path d="M 115 145 q 20 40 40 0" stroke="#000" stroke-width="5" fill="none"></path>
+<!--         <path d="M 115 137 q -15 -10 -10 -20" stroke="#000" stroke-width="5"></path>
+        <path d="M 115 137 q 15 -10 10 -20" stroke="#000" stroke-width="5"></path>
+        <circle r="12" cx="115" cy="124" fill="#000"></circle>
+        <path d="M 108 127 q 10 -13 10 0" stroke="#000" stroke-width="20"></path> -->
+
+        <path d="M115 145 c-10,0 -30,-40 0,-40 s10,40 0,40z" />
+    </svg>
+
+</body>
+</html>
