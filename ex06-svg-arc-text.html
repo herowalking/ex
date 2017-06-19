@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>SVG弧形路径文本</title>
+</head>
+<body>
+
+	<svg viewBox="100, 0 600, 500">
+		<path d="M400 400 L400 320 C480 320 480 200 400 200 S300 320 400 320 M460 260 C440 320 380 330 360 260 S460 240 420 280 Q400 300 390 280" stroke="blue" stroke-width="4" fill=none id="go" />
+		<text x=0 y=15 fill=red>
+			<textPath xlink:href="#go" textLength=1200>
+				这段文字可以沿着弧线排列。这段文字可以沿着弧线排列这段文字可以沿着弧线排列这段文字可以沿着弧线排列这段文字可以沿着弧线排列这段文字可以沿着弧线排列
+			</textPath>
+		</text>
+	</svg>
+
+</body>
+</html>
