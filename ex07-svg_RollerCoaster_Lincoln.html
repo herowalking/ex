@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<title>SVG 实现过山车动画</title>
+
+	<style type="text/css">
+		html,body {
+			width: 100%;
+			height: 100%;
+		}
+		.svg-container {
+			width: 100%;
+			height: 100%;
+			background-color: #eee;
+		}
+
+		.svg-content {
+			width: 100%;
+			height: 100%;
+			background-color: yellow;
+		}
+	</style>
+</head>
+<body>
+	
+	<div class="svg-container">
+		<svg class="svg-content">
+			<g>
+				<path d="M0,300 c100,-100 200,-120 300,0 s100,100 200,0 q50 -50 100 0 a 50 50, 0, 0, 0, 125 -125 a 50 50, 0, 0, 0, -100 125 c100 150 200 180 300 0 q50 -50 100 0 l100 0" fill="none" stroke='blue' stroke-width='3' id="go"></path>
+			</g>
+
+			<text fill="red" font-size="36">
+			    <textPath xlink:href="#go" xmlns:xlink="http://www.w3.org/1999/xlink">
+				    口口口口
+				    <animate attributeName="startOffset" from="0%" to="100%" dur="4s" repeatCount="indefinite"></animate>
+			    </textPath>
+			  </text>
+			
+		</svg>
+	</div>
+	
+</body>
+</html>
