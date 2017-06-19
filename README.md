@@ -1,0 +1,2 @@
+# ex
+exercise by myself
