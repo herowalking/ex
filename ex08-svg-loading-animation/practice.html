@@ -29,7 +29,7 @@
             width: 100px;
             height: 100px;
             background-color: blue;
-            margin: 200px auto;
+            margin: 150px auto;
             animation: overturn 1.2s infinite ease-in-out;
         }
 
@@ -45,17 +45,75 @@
             margin-left: 10px;
         }
 
+        .twinkle {
+            width: 100px;
+            height: 100px;
+            margin: 150px auto;
+        }
+
+        .twinkle .sub {
+            width: 33.33%;
+            height:33.33%;
+            background-color: blueviolet;
+            float: left;
+            animation: twinkle 1.2s infinite ease-in-out;
+        }
+
+        @keyframes twinkle {
+            0%, 70%, 100% {
+                transform: scale(1);
+            }
+            35% {
+                transform: scale(0);
+            }
+        }
+
+        .twinkle .sub:nth-child(7) {}
+        .twinkle .sub:nth-child(4), .twinkle .sub:nth-child(8) {animation-delay: 0.1s;}
+        .twinkle .sub:nth-child(1), .twinkle .sub:nth-child(5), .twinkle .sub:nth-child(9) {animation-delay: 0.2s;}
+        .twinkle .sub:nth-child(2), .twinkle .sub:nth-child(6) {animation-delay: 0.3s;}
+        .twinkle .sub:nth-child(3) {animation-delay: 0.4s}
 
         .css3-loading {
             flex: 1;
             border: 1px dashed blue;
             margin: 0 20px 0 10px;
+            position: relative;
 
         }
 
+        .food {
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin: -120px 0 0 -50px;
+            background-image: url(./eleme.png);
+            animation: updown .8s infinite, tab 5.6s steps(6) infinite;
+        }
+
+        @keyframes updown {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-50px);
+            }
+        }
+
+        @keyframes tab {
+            0% {
+                background-position: 0 0;
+            }
+            100% {
+                background-position: 0 600px;
+            }
+        }
+
         .bottom-base {
-            width: 80px;
-            height: 40px;
+            width: 120px;
+            height: 60px;
             margin: 200px auto;
             background-color: lightskyblue;
             border-radius: 100%;
@@ -78,18 +136,36 @@
             border: 1px dashed green;
             margin-top: 20px;
             margin-left: 10px;
+
         }
+
     </style>
 </head>
 <body>
     <div class="container">
+        <!--翻转-->
         <div class="css3-overturn">
             <div class="overturn"></div>
         </div>
+
+        <!--闪烁-->
         <div class="css3-twinkle">
-            <div class="bottom-base"></div>
+            <div class="twinkle">
+                <div class="sub"></div>
+                <div class="sub"></div>
+                <div class="sub"></div>
+                <div class="sub"></div>
+                <div class="sub"></div>
+                <div class="sub"></div>
+                <div class="sub"></div>
+                <div class="sub"></div>
+                <div class="sub"></div>
+            </div>
         </div>
+
+        <!--饿了么首屏加载动画-->
         <div class="css3-loading">
+            <div class="food"></div>
             <div class="bottom-base"></div>
         </div>
     </div>
