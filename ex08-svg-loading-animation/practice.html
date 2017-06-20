@@ -172,7 +172,47 @@
 
 
     <hr>
+    <!--svg实现饿了么首屏加载动画-->
     <div class="svg-loading">
+        <svg width="500" height="300">
+            <clipPath id="c1">
+                <circle cx="200" cy="100" r="50"></circle>
+            </clipPath>
+            <image x="100" y="50" width="200" height="700" xlink:href="eleme.png"  clip-path="url(#c1)">
+                <animateTransform attributeName="transform" type="translate" from="0 50" to="0 0" dur="0.8s"
+                                  repeatCount="indefinite" fill="freeze" values="0 50; 0 0; 0 50" KeyTimes="0; 0.5; 1">
+                </animateTransform>
+
+                <!--set动画实现-->
+                <!--
+                <set id="s1" attributeName="y" to="-50" begin="0s; s6.end" dur="0.8s"></set>
+                <set id="s2" attributeName="y" to="-150" begin="s1.end" dur="0.8s"></set>
+                <set id="s3" attributeName="y" to="-250" begin="s2.end" dur="0.8s"></set>
+                <set id="s4" attributeName="y" to="-350" begin="s3.end" dur="0.8s"></set>
+                <set id="s5" attributeName="y" to="-450" begin="s4.end" dur="0.8s"></set>
+                <set id="s6" attributeName="y" to="-550" begin="s5.end" dur="0.8s"></set>
+                -->
+
+                <!--animate动画实现-->
+                <animate attributeName="y" from="50" to="-550" dur="5.6s" repeatCount="indefinite" fill="freeze"
+                         values="50; -50; -150; -250; -350; -450; -550" keyTimes="0; 0.17; 0.34; 0.51; 0.68; 0.85; 1" calcMode="discrete">
+                </animate>
+
+            </image>
+
+            <g>
+                <ellipse cx="200" cy="240" rx="60" ry="30" fill="#d3e6ff">
+                    <animateTransform attributeName="transform" type="scale" from="1" to="0.5" dur="0.8s" repeatCount="indefinite"
+                                      values="1; 0.5; 1" keyTimes="0; 0.5; 1">
+                    </animateTransform>
+                </ellipse>
+                <animateTransform attributeName="transform" type="translate" from="0 0" to="100 120" dur="0.8s" repeatCount="indefinite"
+                                  values="0 0; 100 120; 0 0" keyTimes="0; 0.5; 1">
+                </animateTransform>
+            </g>
+        </svg>
+
+        <!--svg动画-->
 
 
     </div>
