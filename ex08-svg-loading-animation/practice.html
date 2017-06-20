@@ -130,18 +130,38 @@
             
         }
 
-        .svg-loading {
-            width: 600px;
+        .svg-loading, .svg-animate {
+            flex: 1;
+            width: 100%;
             height: 400px;
             border: 1px dashed green;
-            margin-top: 20px;
-            margin-left: 10px;
+            margin: 0 20px;
 
         }
 
     </style>
 </head>
 <body>
+
+    <pre>
+          公式：修正svg缩放从左顶点开始
+
+          位移 = 中心点 x ( 1 - 缩放比率 )
+
+          //cx="200" cy="240" rx="60" ry="30"
+
+          x位移  =  200 x ( 1 - 0.5 ) = 100;
+          y位移  =  240 x ( 1 - 0.5 ) = 120;
+
+
+          // rect x="150" y="120" width="15" height="60"
+          cx = x + width/2    150 + 15/2 = 157.5
+          cy = y + height/2   120 + 60/2 = 150
+          x位移 = 157.5 * （1-0.2） = 126
+          y位移 = 150 * （1-0.2） = 120
+
+    </pre>
+
     <div class="container">
         <!--翻转-->
         <div class="css3-overturn">
@@ -170,51 +190,129 @@
         </div>
     </div>
 
-
     <hr>
+
     <!--svg实现饿了么首屏加载动画-->
-    <div class="svg-loading">
-        <svg width="500" height="300">
-            <clipPath id="c1">
-                <circle cx="200" cy="100" r="50"></circle>
-            </clipPath>
-            <image x="100" y="50" width="200" height="700" xlink:href="eleme.png"  clip-path="url(#c1)">
-                <animateTransform attributeName="transform" type="translate" from="0 50" to="0 0" dur="0.8s"
-                                  repeatCount="indefinite" fill="freeze" values="0 50; 0 0; 0 50" KeyTimes="0; 0.5; 1">
-                </animateTransform>
-
-                <!--set动画实现-->
-                <!--
-                <set id="s1" attributeName="y" to="-50" begin="0s; s6.end" dur="0.8s"></set>
-                <set id="s2" attributeName="y" to="-150" begin="s1.end" dur="0.8s"></set>
-                <set id="s3" attributeName="y" to="-250" begin="s2.end" dur="0.8s"></set>
-                <set id="s4" attributeName="y" to="-350" begin="s3.end" dur="0.8s"></set>
-                <set id="s5" attributeName="y" to="-450" begin="s4.end" dur="0.8s"></set>
-                <set id="s6" attributeName="y" to="-550" begin="s5.end" dur="0.8s"></set>
-                -->
-
-                <!--animate动画实现-->
-                <animate attributeName="y" from="50" to="-550" dur="5.6s" repeatCount="indefinite" fill="freeze"
-                         values="50; -50; -150; -250; -350; -450; -550" keyTimes="0; 0.17; 0.34; 0.51; 0.68; 0.85; 1" calcMode="discrete">
-                </animate>
-
-            </image>
-
-            <g>
-                <ellipse cx="200" cy="240" rx="60" ry="30" fill="#d3e6ff">
-                    <animateTransform attributeName="transform" type="scale" from="1" to="0.5" dur="0.8s" repeatCount="indefinite"
-                                      values="1; 0.5; 1" keyTimes="0; 0.5; 1">
+    <div class="container">
+        <div class="svg-loading">
+            <svg width="500" height="300">
+                <clipPath id="c1">
+                    <circle cx="200" cy="100" r="50"></circle>
+                </clipPath>
+                <image x="100" y="50" width="200" height="700" xlink:href="eleme.png"  clip-path="url(#c1)">
+                    <animateTransform attributeName="transform" type="translate" from="0 50" to="0 0" dur="0.8s"
+                                      repeatCount="indefinite" fill="freeze" values="0 50; 0 0; 0 50" KeyTimes="0; 0.5; 1">
                     </animateTransform>
-                </ellipse>
-                <animateTransform attributeName="transform" type="translate" from="0 0" to="100 120" dur="0.8s" repeatCount="indefinite"
-                                  values="0 0; 100 120; 0 0" keyTimes="0; 0.5; 1">
-                </animateTransform>
-            </g>
-        </svg>
 
-        <!--svg动画-->
+                    <!--set动画实现-->
+                    <!--
+                    <set id="s1" attributeName="y" to="-50" begin="0s; s6.end" dur="0.8s"></set>
+                    <set id="s2" attributeName="y" to="-150" begin="s1.end" dur="0.8s"></set>
+                    <set id="s3" attributeName="y" to="-250" begin="s2.end" dur="0.8s"></set>
+                    <set id="s4" attributeName="y" to="-350" begin="s3.end" dur="0.8s"></set>
+                    <set id="s5" attributeName="y" to="-450" begin="s4.end" dur="0.8s"></set>
+                    <set id="s6" attributeName="y" to="-550" begin="s5.end" dur="0.8s"></set>
+                    -->
 
+                    <!--animate动画实现-->
+                    <animate attributeName="y" from="50" to="-550" dur="5.6s" repeatCount="indefinite" fill="freeze"
+                             values="50; -50; -150; -250; -350; -450; -550" keyTimes="0; 0.17; 0.34; 0.51; 0.68; 0.85; 1" calcMode="discrete">
+                    </animate>
 
+                </image>
+
+                <g>
+                    <ellipse cx="200" cy="240" rx="60" ry="30" fill="#d3e6ff">
+                        <animateTransform attributeName="transform" type="scale" from="1" to="0.5" dur="0.8s" repeatCount="indefinite"
+                                          values="1; 0.5; 1" keyTimes="0; 0.5; 1">
+                        </animateTransform>
+                    </ellipse>
+                    <animateTransform attributeName="transform" type="translate" from="0 0" to="100 120" dur="0.8s" repeatCount="indefinite"
+                                      values="0 0; 100 120; 0 0" keyTimes="0; 0.5; 1">
+                    </animateTransform>
+                </g>
+            </svg>
+
+        </div>
+
+        <div class="svg-animate">
+            <!--svg动画-->
+            <svg width="500" height="400">
+                <circle cx="300" cy="200" r="100" fill="none" stroke="#333" stroke-width="5" stroke-dasharray="20,10,5,5,5,10">
+                    <animateTransform attributeName="transform" type="rotate" from="0 300,200" to="360 300,200" dur="3s" repeatCount="indefinite">
+                    </animateTransform>
+                </circle>
+                <circle cx="300" cy="200" r="80" fill="#ddd"></circle>
+                <g>
+                    <rect height="60" width="15" x="250" y="170" fill="#666">
+                        <animateTransform attributeName="transform" type="scale" from="1" to="0.2" dur="1s" repeatCount="indefinite">
+                        </animateTransform>
+                    </rect>
+                    <animateTransform attributeName="transform" type="translate" from="0 0" to="206,224" dur="1s" repeatCount="indefinite">
+                    </animateTransform>
+                </g>
+
+                <g>
+                    <rect height="60" width="15" x="270" y="170" fill="#666">
+                        <animateTransform attributeName="transform" type="scale" from="1" to="0.2" dur="1s" repeatCount="indefinite">
+                        </animateTransform>
+                    </rect>
+                    <animateTransform attributeName="transform" type="translate" from="0 0" to="222,240" dur="1s" repeatCount="indefinite">
+                    </animateTransform>
+                </g>
+
+                <g>
+                    <rect height="60" width="15" x="290" y="170" fill="#666">
+                        <animateTransform attributeName="transform" type="scale" from="1" to="0.2" dur="1s" repeatCount="indefinite">
+                        </animateTransform>
+                    </rect>
+                    <animateTransform attributeName="transform" type="translate" from="0 0" to="238,256" dur="1s" repeatCount="indefinite">
+                    </animateTransform>
+                </g>
+
+                <g>
+                    <rect height="60" width="15" x="310" y="170" fill="#666">
+                        <animateTransform attributeName="transform" type="scale" from="1" to="0.2" dur="1s" repeatCount="indefinite">
+                        </animateTransform>
+                    </rect>
+                    <animateTransform attributeName="transform" type="translate" from="0 0" to="254,272" dur="1s" repeatCount="indefinite">
+                    </animateTransform>
+                </g>
+
+                <g>
+                    <rect height="60" width="15" x="330" y="170" fill="#666">
+                        <animateTransform attributeName="transform" type="scale" from="1" to="0.2" dur="1s" repeatCount="indefinite">
+                        </animateTransform>
+                    </rect>
+                    <animateTransform attributeName="transform" type="translate" from="0 0" to="270,288" dur="1s" repeatCount="indefinite">
+                    </animateTransform>
+                </g>
+            </svg>
+        </div>
     </div>
+
+    <script>
+        function getOffset(x,y,w,h,ra) {
+            var cx = x*1 + w/2;
+            var cy = x*1 + h/2;
+            var to_x = cx * (1 - ra);
+            var to_y = cy * (1 - ra);
+            return to_x + "," + to_y;
+        }
+
+        function getAll() {
+            var svg2 = document.getElementsByTagName('svg')[1];
+            var rects = svg2.querySelectorAll('rect');
+            for (var i=0; i<rects.length; i++) {
+                //<rect height="60" width="15" x="250" y="170" fill="#666">
+                var x = rects[i].getAttribute('x');
+                var y = rects[i].getAttribute('y');
+                var w = rects[i].getAttribute('width');
+                var h = rects[i].getAttribute('height');
+
+                console.log(getOffset(x,y,w,h,0.2));
+            }
+        }
+    </script>
 </body>
 </html>
