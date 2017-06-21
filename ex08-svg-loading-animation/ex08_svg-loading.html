@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>生鲜配送 loading 动画</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        html, body {
+            width: 100%;
+            height: 100%;
+        }
+        .container {
+            width: 100%;
+            height: 600px;
+            background-color: #F68D7A;
+        }
+        h3 {
+            color: #F68D7A;
+        }
+    </style>
+</head>
+<body>
+    <h3>体现活泼亲切和专业专准时的特性</h3>
+
+    <div class="container">
+        <svg width="800" height="800">
+            <image x="300" y="-30" width="200" height="200" xlink:href="img/1-1.png">
+                <animateTransform attributeName="transform" type="translate" from="0 100" to="0 0" dur="0.8s"
+                                  repeatCount="indefinite" fill="freeze" values="0 100; 0 0; 0 100" KeyTimes="0; 0.5; 1">
+                </animateTransform>
+            </image>
+            <g>
+                <image x="200" y="200" width="400" height="400" xlink:href="img/4-1.png">
+                    <animateTransform attributeName="transform" type="scale" from="1" to="0.5" dur="0.8s"
+                                      repeatCount="indefinite" fill="freeze" values="1; 0.5; 1" keyTimes="0; 0.5; 1">
+                    </animateTransform>
+                </image>
+                <animateTransform attributeName="transform" type="translate" from="0 0" to="200 200" dur="0.8s" repeatCount="indefinite"
+                                  values="0 0; 200 200; 0 0" keyTimes="0; 0.5; 1">
+                </animateTransform>
+            </g>
+            <g>
+                <image x="500" y="200" width="100" height="100" xlink:href="img/3-1.png">
+                    <animateTransform attributeName="transform" type="rotate" from="0 550,250" to="360 550,250" dur="3s"
+                                      repeatCount="indefinite" fill="freeze">
+                    </animateTransform>
+                </image>
+            </g>
+
+        </svg>
+    </div>
+</body>
+</html>
