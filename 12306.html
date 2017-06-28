@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JavsScript for 12306</title>
+</head>
+<body>
+    <pre>
+        1、打开浏览器进入 https://kyfw.12306.cn/otn/leftTicket/init
+        2、登录你的账号（不登录也行，抢到再登录）
+        3、F12打开console，输入以下代码
+        4、Go Home !!!
+    </pre>
+
+    <script>
+        (function () {
+            //浏览器打开12306登录购票(https://kyfw.12306.cn/otn/leftTicket/init)
+            alert("HEROWALKING help you go home! 500ms抢一次深圳到武汉的票！");
+            $("#query_ticket").on("click", function () {
+                $("#avail_ticket").attr({"checked": true});
+                var param = {
+                    date: $("#train_date").val("2017-07-01").val(),
+                    from: $("#fromStationText").val("SZQ").val(),
+                    to: $("toStationText").val("WHQ").val()
+                };
+                $.ajax({
+                    type: "GET",
+                    url: "https://kyfw.12306.cn/otn/leftTicket/queryT",
+                    data: "leftTicketDTO.train_date=" + param.date + "&leftTicketDTO.from_station=" +
+                        param.from + "&leftTicketDTO.to_station=" + param.to + "&purpose_codes=ADULT",
+                    success: function (data) {
+                        console.log(data);
+                        var _tickets = $(".btn72");
+                        if(!!_tickets.length) {
+                            _tickets[0].click();
+                            $("#tryPlayer").click();  //火车鸣笛15秒
+                            setTimeout(function () {
+                                $("#tryPlayer").click();
+                            }, 15000);
+                            clearInterval(grabTimer);
+                        }
+                    },
+                    error: function (error, status) {
+                        console.log("Sorry! " + error);
+                        clearInterval(grabTimer);
+                    }
+                });
+            });
+            var grabTimer = setInterval(function () {
+                $("#query_ticket").click();
+            }, 500);
+        })();
+    </script>
+</body>
+</html>
