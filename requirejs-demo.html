@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>RequireJs Demo</title>
+    <script src="./js/require.min-2.3.3.js"></script>
+</head>
+<body>
+
+    <script>
+
+//        console.log(require);
+
+        require.config({
+            paths: {
+                "jquery": ["./js/jquery-3.1.1.min"],
+                "underscore": ["https://cdn.bootcss.com/underscore.js/1.8.3/underscore-min"]
+            }
+        });
+
+        require(["jquery", "underscore"], function($, _){
+            $(function () {
+                _.each([1,2,3],alert);
+            })
+        })
+
+    </script>
+</body>
+</html>
