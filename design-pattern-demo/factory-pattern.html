@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>工厂模式</title>
+</head>
+<body>
+    <script>
+        /*
+        //IE6支持的对象window.ActiveXObject
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function () {
+
+        }
+        xhr.open();
+        xhr.send();.
+        */
+
+        //简单工厂 case1
+        /*
+        var XMLHttpFactory = function () {}
+        //在使用ajax的时候每次都需要重复书写和使用，所以创建一个简单工厂模式来简化代码
+        XMLHttpFactory.createXMLHttp = function () {  //XHR简单工厂模式
+            var XMLHttp = null;
+            if(window.XMLHttpRequest) {
+                XMLHttp = new XMLHttpRequest();
+            } else if(window.ActiveXObject) {
+                XMLHttp = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            return XMLHttp;
+        }
+
+        //使用:
+        var xmlHttp = XMLHttpFactory.createXMLHttp();
+        console.log(xmlHttp);
+        if(!xmlHttp) {
+            return;
+        }
+         */
+
+        //抽象工厂模式
+        //我想和你谈恋爱：接下来的额动作很有可能是会不同的
+        var XMLHttpFactory = function () {}
+
+        XMLHttpFactory.prototype = {
+            createFactory:function(){
+                throw new Error("This is an abstract class");  //这是一个抽象类
+            }
+        }
+
+        var XHRHandler = function () {
+            XMLHttpFactory.call(this);
+        }
+
+        XHRHandler.prototype = new XMLHttpFactory();
+        XHRHandler.prototype.constructor = XHRHandler;
+
+        XHRHandler.prototype.createFactory = function () {
+            var XMLHttp = null;
+            if(window.XMLHttpRequest) {
+                XMLHttp = new XMLHttpRequest();
+            } else if(window.ActiveXObject) {
+                XMLHttp = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            return XMLHttp;
+        }
+
+        console.log(new XHRHandler());
+    </script>
+</body>
+</html>

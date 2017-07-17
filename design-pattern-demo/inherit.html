@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>继承的几种方式</title>
+</head>
+<body>
+    <script>
+        //组合继承
+
+        /*
+        function Father(name) {
+            this.name = name;
+            this.age = 40;
+            this.arr = [1];
+        }
+
+        Father.prototype.fun1 = function () {}
+
+        function Child(name) {
+            Father.call(this, name); //类式继承
+        }
+
+        Child.prototype = new Father();  //原型继承
+
+        var child1 = new Child("Think");
+        console.log(child1.name);
+        console.log(child1);
+        */
+
+        //寄生组合继承
+        function beget(obj) {
+            var F = function () {}
+            F.prototype = obj;
+            return new F();
+        }
+
+        function Super() {  //父类
+            this.name = "DN";
+            this.arr = [1];
+        }
+
+        Super.prototype.fun1 = function () {}
+
+        function Sub() {  //子类
+            Super.call(this);
+        }
+
+        var proto = beget(Super.prototype);  //proto: 拥有了父类的属性，只是得到一个prototype的实例
+
+        proto.constructor = Sub;  //此时是没有父类属性的，因为没有new，不是实例对象
+        Sub.prototype = proto;  //这行代码最重要，这行代码触发了继承
+
+        var sub = new Sub();
+        console.log(sub.name);
+        console.log(sub);
+
+    </script>
+</body>
+</html>
