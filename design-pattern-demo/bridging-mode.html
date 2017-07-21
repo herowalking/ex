@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>桥接模式</title>
+</head>
+<body>
+    <script>
+
+        var singleton = function(fn) {  //检测方法独立
+            var result;  //result是一个undefined对象
+            return function () {  //apply 和 call的功能是类似的
+                return result || (result = fn.apply(this, arguments));
+            }
+        }
+
+        var createMask = singleton(function () {  //方法内的代码独立
+            return document.body.appendChild(document.createElement("div"));
+        })
+
+        /*
+        * forEach循环函数并不关心FN里面的具体实现，FN里面的逻辑也不会被forEach循环函数的改写影响
+        * */
+        var forEach = function (arr, fn) {
+            for(var i=0, l=arr.length; i<l; i++) {
+                var c = arr[i];
+                if(fn.call(c, i, c) == false) {
+                    return false;
+                }
+            }
+        }
+        
+        var Class1 = function (a,b,c) {
+            this.a = a;
+            this.bc = b*c;
+        }
+
+        var Class2 = function (d) {
+            this.d = d;
+        }
+
+        //桥接模式：连接多个类 考虑的是代码的解耦
+        function BridgeClass(a,b,c,d) {
+            this.class1 = new Class1(a,b,c);
+            this.class2 = new Class2(d);
+        }
+
+        function demo(a,b) {  //低耦合，精致
+//            console.log(a*b + (a+b));  //虽然第一次能出来，但第二次修改需求的时候需要动大刀
+            return a*b;
+        }
+        function demo2(a,b) {
+            return a + b;
+        }
+
+        console.log(demo(2,3) + demo2(2, 3));
+
+    </script>
+</body>
+</html>
