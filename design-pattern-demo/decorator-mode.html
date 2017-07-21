@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>装饰者模式</title>
+</head>
+<body>
+
+    <script>
+        /*
+        function Macbook() {  //需要装饰的类
+            this.cost = function () {  //被装饰的对象 / 方法
+                console.log("bbb");
+                return 1000;
+            }
+        }
+
+        function Memory(macbook) {
+            this.cost = function () {
+                return macbook.cost() + 70;  //1000 + 70
+            }
+        }
+
+        function Drive(mackbook) {
+            this.cost = function () {
+                return mackbook.cost() + 30;  //(1000 + 70) + 30
+            }
+        }
+
+        function Insurance(macbook) {
+            this.cost = function () {
+                return macbook.cost() + 200;  //((1000 + 70) + 30) + 200
+            }
+        }
+
+        //new对象时只是得到一个实例对象，只会执行构造器（类）本身，并没有执行cost里面的代码（cost方法需要调用才会执行）
+        //括号里面的new Method(方法)只是得到一个实例，而真正得到的是Insurance的实例，实际上传入的是一个实例对象
+        var myMacbook = new Insurance(new Drive(new Memory(new Macbook())));
+        console.log(myMacbook.cost());
+        */
+
+        //使用this，需要实例对象的时候得到（需要new），如果没有new，那么this在这里起不到任何作用
+        function ConcreateClass() {
+            this.performTask = function () {
+                this.preTask();  //A
+                console.log("C");  //C
+                this.postTask();  //B
+            }
+        }
+
+        function AbstractDecorator(decorated) {
+            this.performTask = function () {
+                console.log("D");
+                decorated.performTask();  //第一次调用的还是自己本身，第二次调用的是ConcreateClass的performTask方法
+            }
+        }
+
+        function ConcreateDecoratorClass(decorated) {  //decorated是一个实例
+            debugger;
+            this.base = AbstractDecorator;
+            this.base(decorated);  //其实此时AbstractDecorator方法已经是ConcreateDecoratorClass的一部分
+            decorated.preTask = function () {
+                console.log("A");
+            }
+            decorated.postTask = function () {
+                console.log("B");
+            }
+        }
+
+        var concreate = new ConcreateClass();
+        var decorator1 = new ConcreateDecoratorClass(concreate);  //decorator1是得到的实例属性，注意它有一个performTask的方法
+        var decorator2 = new ConcreateDecoratorClass(decorator1);  //得到preTask / postTask, decorator2是ConcreateDecoratorClass的实例，而AbstractDecorator是ConcreateDecoratorClass的实例属性
+        decorator2.performTask();
+        //decorator1和decorator2不一样
+    </script>
+
+</body>
+</html>
