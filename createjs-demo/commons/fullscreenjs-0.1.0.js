@@ -1,4 +1,5 @@
 this.createjs = this.createjs || {};  //初始化
+
 this.createjs.fullScreen = (function (root, factory) {
     return factory.bind(root);  //将来时，将来factory函数被调用的时候，它里面的this指的是root
 })(window, function (view, callback, args) {
