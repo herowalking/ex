@@ -50,18 +50,48 @@ this.createjs.Preload = (function(root, factory){
     Preload.prototype.drawAnimate = function () {
         var movie = new createjs.MovieClip(null, 0, true);
         var star = new createjs.Shape();
-        star.graphics.beginFill("#e2e2e2").drawPloyStar(0,0,10,10,2,5);
+        star.graphics.beginFill("#e2e2e2").drawPolyStar(0,0,10,10,2,5);
         movie.timeline.addTween(
             createjs.Tween.get(star)
-                .to({x:this.mainX, y:this.mainY - 200}, 0)
+                .to({x:this.mainX, y:this.mainY-200}, 0)
                 .to({x:this.mainX+150, y:this.mainY+50}, 20)
-                .to({x:this.mainX-150, y:this..mainY+50}, 20)
-                .to({x:this.mainX, y:this.mainY - 200}, 20)
+                .to({x:this.mainX-150, y:this.mainY+50}, 20)
+                .to({x:this.mainX, y:this.mainY-200}, 20)
         );
         return movie;
     }
-    Preload.drawProgress = function () {
-        
+    Preload.prototype.drawProgress = function () {
+        var progress = new createjs.Text('0%', '30px Arial', '#000');
+        progress.textAlign = 'center';
+        progress.textBaseline = 'bottom';
+        progress.x = this.mainX;
+        progress.y = this.mainY;
+        return progress;
     }
-
+    Preload.prototype.drawText = function () {
+        var text = new createjs.Bitmap('images/loadings.png');
+        text.scaleX = text.scaleY = 1.2;
+        text.x = this.mainX - 150;
+        text.y = this.mainY + 150;
+        return text;
+    }
+    Preload.prototype.preload = function () {
+        this.queue = new createjs.LoadQueue();
+        this.queue.installPlugin(createjs.Sound);
+        if(this.callback) {
+            this.queue.on('complete', this.callback, this);
+        }
+        this.queue.loadFile({id:'sound', src:'sounds/bg.mp3'});
+        this.queue.loadManifest([
+            {id:'img0', src:'images/_8_1.png'},
+            {id:'img1', src:'images/3f3710c6-a7fc-4873-9833-1bae21e50a47.jpg'}
+        ]);
+    }
+    Preload.prototype.playSound = function (key) {
+        createjs.Sound.play(key);
+    }
+    Preload.prototype.getResult = function (key) {
+        return this.queue.getResult(key);
+    }
+    return Preload;
 });
